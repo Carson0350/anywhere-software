@@ -4,57 +4,18 @@ import Button from '../components/Button.astro';
 ---
 
 <Layout
-  title="Home | AnywhereSoftware"
-  description="Mobile web design consultant specializing in agritourism and hospitality"
+  title="AnywhereSoftware | Mobile Web Design Consultant"
+  description="Beautiful websites for agritourism and hospitality, delivered anywhere"
 >
-  <main class="min-h-screen flex flex-col items-center justify-center gap-12 p-8">
-    <h1 class="text-6xl font-heading font-bold text-primary-700">
-      Welcome to AnywhereSoftware
-    </h1>
-
-    <!-- Button Variants -->
-    <section class="flex flex-col gap-8 items-center">
-      <div>
-        <h2 class="text-2xl font-heading font-semibold mb-4 text-center">Button Variants</h2>
-        <div class="flex flex-wrap gap-4 justify-center">
-          <Button>Default Button</Button>
-          <Button variant="secondary">Secondary Button</Button>
-          <Button variant="outline">Outline Button</Button>
-        </div>
-      </div>
-
-      <!-- Button Sizes -->
-      <div>
-        <h2 class="text-2xl font-heading font-semibold mb-4 text-center">Button Sizes</h2>
-        <div class="flex flex-wrap gap-4 items-center justify-center">
-          <Button size="default">Default Size</Button>
-          <Button size="lg">Large Size</Button>
-          <Button size="xl">Extra Large</Button>
-        </div>
-      </div>
-
-      <!-- Button States -->
-      <div>
-        <h2 class="text-2xl font-heading font-semibold mb-4 text-center">Button States</h2>
-        <div class="flex flex-wrap gap-4 justify-center">
-          <Button href="/about">Link Button</Button>
-          <Button disabled>Disabled Button</Button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Color Palette Test -->
-    <section class="flex flex-col gap-4 items-center">
-      <h2 class="text-2xl font-heading font-semibold">Color Palette</h2>
-      <div class="flex gap-4">
-        <div class="w-24 h-24 bg-primary-500 rounded-lg"></div>
-        <div class="w-24 h-24 bg-accent-sky rounded-lg"></div>
-        <div class="w-24 h-24 bg-accent-sunset rounded-lg"></div>
-        <div class="w-24 h-24 bg-accent-alpine rounded-lg"></div>
-      </div>
-      <p class="text-lg text-neutral-600 font-sans">
-        Testing Tailwind configuration with custom design tokens
+  <main class="min-h-screen flex items-center justify-center bg-neutral-50">
+    <div class="text-center px-4">
+      <h1 class="text-5xl md:text-6xl font-bold text-neutral-900 mb-6 font-heading">
+        AnywhereSoftware
+      </h1>
+      <p class="text-xl md:text-2xl text-neutral-600 mb-8 max-w-2xl mx-auto">
+        Beautiful websites, delivered anywhere
       </p>
-    </section>
+      <Button size="xl">Get Started</Button>
+    </div>
   </main>
 </Layout>
