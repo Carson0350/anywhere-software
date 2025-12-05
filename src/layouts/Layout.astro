@@ -71,7 +71,7 @@ const ogImage = new URL(image, siteUrl).href;
     <script is:inline>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
-    <script defer src="/_vercel/insights/script.js"></script>
+    <script is:inline defer src="/_vercel/insights/script.js"></script>
 
     <slot name="head" />
   </head>
