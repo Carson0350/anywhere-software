@@ -197,8 +197,92 @@
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
 
+  const fields = {
+    name: form?.querySelector('#name') as HTMLInputElement,
+    email: form?.querySelector('#email') as HTMLInputElement,
+    businessType: form?.querySelector('#business-type') as HTMLSelectElement,
+    location: form?.querySelector('#location') as HTMLInputElement,
+    message: form?.querySelector('#message') as HTMLTextAreaElement
+  };
+
+  // Email validation regex (RFC 5322 simplified)
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Debounced validation to prevent lag
+  let validationTimeout: number;
+
+  // Validate on blur
+  Object.entries(fields).forEach(([name, field]) => {
+    field?.addEventListener('blur', () => validateField(name, field));
+
+    // Debounced validation on input (only if field has error)
+    field?.addEventListener('input', () => {
+      if (field.classList.contains('border-error')) {
+        clearTimeout(validationTimeout);
+        validationTimeout = window.setTimeout(() => {
+          validateField(name, field);
+        }, 300); // Wait 300ms after user stops typing
+      }
+    });
+  });
+
+  function validateField(name: string, field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) {
+    const value = field.value.trim();
+    const errorElement = field.nextElementSibling as HTMLElement;
+
+    let isValid = true;
+    let errorMessage = '';
+
+    if (name === 'email') {
+      isValid = emailRegex.test(value);
+      errorMessage = 'Please enter a valid email address (e.g., you@example.com)';
+    } else if (name === 'businessType') {
+      isValid = value !== '';
+      errorMessage = 'Please select your business type';
+    } else if (name === 'name') {
+      isValid = value.length > 0;
+      errorMessage = 'Please enter your name';
+    } else if (name === 'location') {
+      isValid = value.length > 0;
+      errorMessage = 'Please enter your city and state';
+    } else if (name === 'message') {
+      isValid = value.length > 0;
+      errorMessage = 'Please tell us about your needs';
+    }
+
+    if (isValid) {
+      field.classList.remove('border-error');
+      field.classList.add('border-success');
+      errorElement?.classList.add('hidden');
+    } else {
+      field.classList.add('border-error');
+      field.classList.remove('border-success');
+      errorElement?.classList.remove('hidden');
+      if (errorElement) {
+        errorElement.textContent = errorMessage;
+      }
+    }
+
+    return isValid;
+  }
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Validate all fields before submission
+    let isFormValid = true;
+    Object.entries(fields).forEach(([name, field]) => {
+      if (!validateField(name, field)) {
+        isFormValid = false;
+      }
+    });
+
+    if (!isFormValid) {
+      // Focus first invalid field
+      const firstInvalid = form.querySelector('.border-error') as HTMLElement;
+      firstInvalid?.focus();
+      return;
+    }
 
     // Show loading state
     const originalText = submitButton.textContent;
