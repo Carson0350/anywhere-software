@@ -192,3 +192,89 @@
     </form>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Show loading state
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
+
+    const formData = new FormData(form);
+
+    try {
+      // TODO: Replace YOUR_FORM_ID with actual Formspree form ID
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        // Success
+        form.reset();
+        showSuccessMessage();
+
+        // Track successful submission
+        if (typeof (window as any).va !== 'undefined') {
+          (window as any).va('event', 'contact_form_submit', {
+            businessType: formData.get('businessType'),
+            location: formData.get('location'),
+            budget: formData.get('budget') || 'not-provided',
+            timeline: formData.get('timeline') || 'not-provided'
+          });
+        }
+      } else {
+        // Handle Formspree-specific errors
+        const data = await response.json();
+
+        if (data.errors) {
+          // Show field-specific errors from Formspree
+          data.errors.forEach((error: any) => {
+            const field = form.querySelector(`[name="${error.field}"]`) as HTMLElement;
+            if (field) {
+              const errorElement = field.nextElementSibling as HTMLElement;
+              field.classList.add('border-error');
+              errorElement?.classList.remove('hidden');
+              errorElement.textContent = error.message;
+            }
+          });
+        } else {
+          showErrorMessage('Oops! Something went wrong. Please try again.');
+        }
+      }
+    } catch (error) {
+      showErrorMessage('Network error. Please check your connection.');
+    } finally {
+      if (submitButton) {
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+      }
+    }
+  });
+
+  function showSuccessMessage() {
+    const successDiv = document.createElement('div');
+    successDiv.className = 'bg-success/10 border-2 border-success text-success px-6 py-4 rounded-lg mb-6';
+    successDiv.textContent = "Thanks! We'll reach out within 24 hours.";
+    form.insertBefore(successDiv, form.firstChild);
+
+    setTimeout(() => successDiv.remove(), 5000);
+  }
+
+  function showErrorMessage(message: string) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'bg-error/10 border-2 border-error text-error px-6 py-4 rounded-lg mb-6';
+    errorDiv.textContent = message;
+    form.insertBefore(errorDiv, form.firstChild);
+
+    setTimeout(() => errorDiv.remove(), 5000);
+  }
+</script>
