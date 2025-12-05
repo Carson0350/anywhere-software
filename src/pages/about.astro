@@ -1,0 +1,407 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+---
+
+<Layout
+  title="About AnywhereSoftware - Mobile Web Design Consultant"
+  description="Carson travels in an RV to meet rural businesses on-site. Face-to-face web design and consulting for campgrounds, wineries, and rural hospitality."
+>
+  <main id="main">
+    <section class="py-24 bg-neutral-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <!-- Trust signal -->
+            <p class="text-sm font-semibold text-primary-600 mb-4">
+              Serving rural businesses across the Pacific Northwest
+            </p>
+
+            <h1 class="text-5xl font-bold font-heading text-neutral-900 mb-6">
+              The Only Web Consultant Who Travels to You
+            </h1>
+            <p class="text-xl text-neutral-700 mb-8 leading-relaxed">
+              I live in an RV and meet clients on-site. Face-to-face consulting for
+              campgrounds, wineries, and rural businesses.
+            </p>
+
+            <Button href="#process" size="lg">
+              See How It Works
+            </Button>
+          </div>
+
+          <div>
+            <!-- Placeholder for hero image -->
+            <div class="rounded-lg shadow-lg bg-neutral-200 aspect-[3/2] flex items-center justify-center">
+              <div class="text-center p-8">
+                <p class="text-neutral-600 text-lg font-semibold mb-2">📷 Hero Image</p>
+                <p class="text-neutral-500 text-sm">Carson with RV at a rural campground</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Mobile Consulting Section -->
+    <section id="benefits" class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-4xl md:text-5xl font-bold font-heading text-neutral-900 text-center mb-16">
+          Why I Come to You
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Benefit 1: Face-to-Face Trust -->
+          <div class="bg-white rounded-lg shadow-md p-8 hover:shadow-lg transition-shadow">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold font-heading text-neutral-900 mb-4">
+              Face-to-Face Trust
+            </h3>
+            <p class="text-neutral-700 leading-relaxed">
+              Rural business owners prefer in-person relationships. I meet you where
+              you're comfortable—your property, your pace.
+            </p>
+          </div>
+
+          <!-- Benefit 2: On-Site Understanding -->
+          <div class="bg-white rounded-lg shadow-md p-8 hover:shadow-lg transition-shadow">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold font-heading text-neutral-900 mb-4">
+              On-Site Understanding
+            </h3>
+            <p class="text-neutral-700 leading-relaxed">
+              I see your operation firsthand. Your challenges, your guests, your unique
+              story. Better context = better solutions.
+            </p>
+          </div>
+
+          <!-- Benefit 3: No Tech Barriers -->
+          <div class="bg-white rounded-lg shadow-md p-8 hover:shadow-lg transition-shadow">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold font-heading text-neutral-900 mb-4">
+              No Tech Barriers
+            </h3>
+            <p class="text-neutral-700 leading-relaxed">
+              No Zoom fatigue, no screen sharing confusion. Just clear conversation
+              and hands-on training when it's time to launch.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Process Section -->
+    <section id="process" class="py-24 bg-neutral-50">
+      <div class="max-w-5xl mx-auto px-4">
+        <h2 class="text-4xl md:text-5xl font-bold font-heading text-neutral-900 text-center mb-16">
+          How It Works
+        </h2>
+
+        <div class="relative">
+          <!-- Connecting line (hidden on mobile) -->
+          <div class="hidden lg:block absolute top-12 left-0 right-0 h-1 bg-primary-200" aria-hidden="true"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 relative">
+            <!-- Step 1: Discovery -->
+            <div class="text-center process-step">
+              <div class="w-24 h-24 bg-primary-500 text-white rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-6 relative z-10">
+                1
+              </div>
+              <p class="text-sm text-primary-600 font-semibold mb-2">
+                Week 1
+              </p>
+              <h3 class="text-xl font-bold font-heading text-neutral-900 mb-3">
+                Discovery
+              </h3>
+              <p class="text-neutral-700 leading-relaxed">
+                We meet at your property. I learn about your business, your guests,
+                and your goals.
+              </p>
+            </div>
+
+            <!-- Step 2: Planning -->
+            <div class="text-center process-step">
+              <div class="w-24 h-24 bg-primary-500 text-white rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-6 relative z-10">
+                2
+              </div>
+              <p class="text-sm text-primary-600 font-semibold mb-2">
+                Week 2
+              </p>
+              <h3 class="text-xl font-bold font-heading text-neutral-900 mb-3">
+                Planning
+              </h3>
+              <p class="text-neutral-700 leading-relaxed">
+                I create a custom proposal with timeline and pricing. You approve,
+                and we get started.
+              </p>
+            </div>
+
+            <!-- Step 3: Building -->
+            <div class="text-center process-step">
+              <div class="w-24 h-24 bg-primary-500 text-white rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-6 relative z-10">
+                3
+              </div>
+              <p class="text-sm text-primary-600 font-semibold mb-2">
+                Weeks 3-8
+              </p>
+              <h3 class="text-xl font-bold font-heading text-neutral-900 mb-3">
+                Building
+              </h3>
+              <p class="text-neutral-700 leading-relaxed">
+                I design and build your site. You review progress and provide feedback
+                along the way.
+              </p>
+            </div>
+
+            <!-- Step 4: Launch -->
+            <div class="text-center process-step">
+              <div class="w-24 h-24 bg-primary-500 text-white rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-6 relative z-10">
+                4
+              </div>
+              <p class="text-sm text-primary-600 font-semibold mb-2">
+                Week 9
+              </p>
+              <h3 class="text-xl font-bold font-heading text-neutral-900 mb-3">
+                Launch
+              </h3>
+              <p class="text-neutral-700 leading-relaxed">
+                I train you in person, hand off materials, and stay available for
+                ongoing support.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <Button href="/#contact" size="lg">
+            Start Your Project
+          </Button>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Carson Bio Section -->
+    <section class="py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-4xl md:text-5xl font-bold font-heading text-neutral-900 text-center mb-16">
+          Meet Carson
+        </h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+          <div class="lg:col-span-2">
+            <!-- Placeholder for Carson's photo -->
+            <div class="rounded-lg shadow-lg bg-neutral-200 aspect-[4/5] flex items-center justify-center">
+              <div class="text-center p-8">
+                <p class="text-neutral-600 text-lg font-semibold mb-2">📷 Photo</p>
+                <p class="text-neutral-500 text-sm">Carson, founder of AnywhereSoftware</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-3">
+            <!-- Social proof stats -->
+            <div class="grid grid-cols-3 gap-6 mb-8 text-center">
+              <div>
+                <p class="text-4xl font-bold text-primary-600">50+</p>
+                <p class="text-sm text-neutral-600">Sites Built</p>
+              </div>
+              <div>
+                <p class="text-4xl font-bold text-primary-600">15</p>
+                <p class="text-sm text-neutral-600">Active Retainers</p>
+              </div>
+              <div>
+                <p class="text-4xl font-bold text-primary-600">10K+</p>
+                <p class="text-sm text-neutral-600">Miles Traveled</p>
+              </div>
+            </div>
+
+            <p class="text-lg text-neutral-700 mb-6 leading-relaxed">
+              I've been building websites for over a decade, but I got tired of the
+              remote-only consulting world. Too many video calls, too much miscommunication,
+              and too little connection with the people I was helping.
+            </p>
+
+            <p class="text-lg text-neutral-700 mb-6 leading-relaxed">
+              When I started traveling full-time in my RV, I discovered a gap: rural
+              businesses—campgrounds, wineries, restaurants—needed modern websites, but
+              they didn't trust remote agencies. They wanted someone who understood their
+              world, someone who'd show up in person.
+            </p>
+
+            <p class="text-lg text-neutral-700 mb-8 leading-relaxed">
+              So I combined my two passions: web development and RV travel. Now I meet
+              clients on-site, build beautiful websites with modern technology (Astro,
+              React, Tailwind), and train them face-to-face. It's consulting the way
+              it should be—personal, clear, and effective.
+            </p>
+
+            <div class="mb-8">
+              <h3 class="text-xl font-bold font-heading text-neutral-900 mb-4">
+                What I Bring to Your Project
+              </h3>
+              <ul class="grid grid-cols-2 gap-3">
+                <li class="flex items-center text-neutral-700">
+                  <svg class="w-5 h-5 text-primary-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  Modern Web Development
+                </li>
+                <li class="flex items-center text-neutral-700">
+                  <svg class="w-5 h-5 text-primary-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  Mobile-First Design
+                </li>
+                <li class="flex items-center text-neutral-700">
+                  <svg class="w-5 h-5 text-primary-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  SEO Optimization
+                </li>
+                <li class="flex items-center text-neutral-700">
+                  <svg class="w-5 h-5 text-primary-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  Booking Integrations
+                </li>
+                <li class="flex items-center text-neutral-700">
+                  <svg class="w-5 h-5 text-primary-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  Content Management
+                </li>
+                <li class="flex items-center text-neutral-700">
+                  <svg class="w-5 h-5 text-primary-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  In-Person Training
+                </li>
+              </ul>
+            </div>
+
+            <Button href="/#contact" size="lg">
+              Let's Work Together
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<!-- Schema.org structured data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Carson",
+  "jobTitle": "Web Design Consultant",
+  "description": "Mobile web design consultant specializing in rural businesses",
+  "url": "https://anywheresoftware.com/about",
+  "image": "https://anywheresoftware.com/images/carson.jpg",
+  "knowsAbout": ["Web Development", "Astro", "React", "Tailwind CSS", "Mobile Consulting"],
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": "45.5152",
+      "longitude": "-122.6784"
+    },
+    "geoRadius": "500 miles"
+  }
+}
+</script>
+
+<script>
+  // Track page view
+  if (typeof (window as any).va !== 'undefined') {
+    (window as any).va('event', 'about_page_view');
+  }
+
+  // Scroll-triggered animation for process steps
+  const steps = document.querySelectorAll('.process-step');
+
+  const stepObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-in-up');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  steps.forEach(step => stepObserver.observe(step));
+
+  // Track CTA clicks by section
+  const heroCTA = document.querySelector('a[href="#process"]');
+  const processCTAs = document.querySelectorAll('a[href="/#contact"]');
+
+  heroCTA?.addEventListener('click', () => {
+    if (typeof (window as any).va !== 'undefined') {
+      (window as any).va('event', 'about_cta_click', { section: 'hero' });
+    }
+  });
+
+  processCTAs.forEach((cta, index) => {
+    cta.addEventListener('click', () => {
+      if (typeof (window as any).va !== 'undefined') {
+        const section = index === 0 ? 'process' : 'bio';
+        (window as any).va('event', 'about_cta_click', { section });
+      }
+    });
+  });
+
+  // Track scroll depth
+  let maxScroll = 0;
+  let tracked25 = false;
+  let tracked50 = false;
+  let tracked75 = false;
+
+  window.addEventListener('scroll', () => {
+    const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    if (scrollPercent > maxScroll) {
+      maxScroll = scrollPercent;
+      if (maxScroll >= 25 && !tracked25) {
+        tracked25 = true;
+        if (typeof (window as any).va !== 'undefined') {
+          (window as any).va('event', 'about_scroll_depth', { depth: '25%' });
+        }
+      } else if (maxScroll >= 50 && !tracked50) {
+        tracked50 = true;
+        if (typeof (window as any).va !== 'undefined') {
+          (window as any).va('event', 'about_scroll_depth', { depth: '50%' });
+        }
+      } else if (maxScroll >= 75 && !tracked75) {
+        tracked75 = true;
+        if (typeof (window as any).va !== 'undefined') {
+          (window as any).va('event', 'about_scroll_depth', { depth: '75%' });
+        }
+      }
+    }
+  });
+</script>
+
+<style>
+  .process-step {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .animate-fade-in-up {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
