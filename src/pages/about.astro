@@ -326,10 +326,15 @@ import Button from '../components/Button.astro';
 </script>
 
 <script>
+  // Track page view
+  if (typeof (window as any).va !== 'undefined') {
+    (window as any).va('event', 'about_page_view');
+  }
+
   // Scroll-triggered animation for process steps
   const steps = document.querySelectorAll('.process-step');
 
-  const observer = new IntersectionObserver((entries) => {
+  const stepObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('animate-fade-in-up');
@@ -337,7 +342,55 @@ import Button from '../components/Button.astro';
     });
   }, { threshold: 0.2 });
 
-  steps.forEach(step => observer.observe(step));
+  steps.forEach(step => stepObserver.observe(step));
+
+  // Track CTA clicks by section
+  const heroCTA = document.querySelector('a[href="#process"]');
+  const processCTAs = document.querySelectorAll('a[href="/#contact"]');
+
+  heroCTA?.addEventListener('click', () => {
+    if (typeof (window as any).va !== 'undefined') {
+      (window as any).va('event', 'about_cta_click', { section: 'hero' });
+    }
+  });
+
+  processCTAs.forEach((cta, index) => {
+    cta.addEventListener('click', () => {
+      if (typeof (window as any).va !== 'undefined') {
+        const section = index === 0 ? 'process' : 'bio';
+        (window as any).va('event', 'about_cta_click', { section });
+      }
+    });
+  });
+
+  // Track scroll depth
+  let maxScroll = 0;
+  let tracked25 = false;
+  let tracked50 = false;
+  let tracked75 = false;
+
+  window.addEventListener('scroll', () => {
+    const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    if (scrollPercent > maxScroll) {
+      maxScroll = scrollPercent;
+      if (maxScroll >= 25 && !tracked25) {
+        tracked25 = true;
+        if (typeof (window as any).va !== 'undefined') {
+          (window as any).va('event', 'about_scroll_depth', { depth: '25%' });
+        }
+      } else if (maxScroll >= 50 && !tracked50) {
+        tracked50 = true;
+        if (typeof (window as any).va !== 'undefined') {
+          (window as any).va('event', 'about_scroll_depth', { depth: '50%' });
+        }
+      } else if (maxScroll >= 75 && !tracked75) {
+        tracked75 = true;
+        if (typeof (window as any).va !== 'undefined') {
+          (window as any).va('event', 'about_scroll_depth', { depth: '75%' });
+        }
+      }
+    }
+  });
 </script>
 
 <style>
