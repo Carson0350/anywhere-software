@@ -17,3 +17,44 @@ import ContactForm from '../components/ContactForm.astro';
   <Pricing />
   <ContactForm />
 </Layout>
+
+<script>
+  // Track form view (when contact section enters viewport)
+  const contactSection = document.getElementById('contact');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && typeof (window as any).va !== 'undefined') {
+        (window as any).va('event', 'contact_form_view');
+        observer.disconnect(); // Only track once
+      }
+    });
+  }, { threshold: 0.5 }); // Trigger when 50% visible
+
+  if (contactSection) {
+    observer.observe(contactSection);
+  }
+
+  // Track form start (first field interaction)
+  const form = document.getElementById('contact-form');
+  let formStarted = false;
+
+  form?.addEventListener('focusin', () => {
+    if (!formStarted && typeof (window as any).va !== 'undefined') {
+      (window as any).va('event', 'contact_form_start');
+      formStarted = true;
+    }
+  }, { once: true });
+
+  // Track field abandonment
+  const fields = form?.querySelectorAll('input, select, textarea');
+  fields?.forEach(field => {
+    field.addEventListener('blur', () => {
+      const inputField = field as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+      if (inputField.value.trim() === '' && typeof (window as any).va !== 'undefined') {
+        (window as any).va('event', 'contact_field_abandon', {
+          field: inputField.name
+        });
+      }
+    });
+  });
+</script>
