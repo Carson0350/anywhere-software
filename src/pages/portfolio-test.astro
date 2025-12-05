@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FlipCard from '../components/FlipCard.astro';
+---
+
+<Layout
+  title="Portfolio Test | AnywhereSoftware"
+  description="Testing flip card component"
+>
+  <main class="min-h-screen bg-neutral-50 py-24">
+    <div class="max-w-7xl mx-auto px-4">
+      <h1 class="text-4xl font-bold font-heading text-neutral-900 mb-12 text-center">
+        Flip Card Test
+      </h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <FlipCard
+          frontImage="/portfolio-before-1.jpg"
+          frontAlt="Old website design"
+          backImage="/portfolio-after-1.jpg"
+          backAlt="New modern website design"
+          clientName="Mary Jane's Campground"
+          result="60% increase in bookings"
+        />
+
+        <FlipCard
+          frontImage="/portfolio-before-1.jpg"
+          frontAlt="Old website design"
+          backImage="/portfolio-after-1.jpg"
+          backAlt="New modern website design"
+          clientName="Pine Valley Winery"
+          result="3x more online orders"
+        />
+
+        <FlipCard
+          frontImage="/portfolio-before-1.jpg"
+          frontAlt="Old website design"
+          backImage="/portfolio-after-1.jpg"
+          backAlt="New modern website design"
+          clientName="Mountain View Lodge"
+          result="45% faster load times"
+        />
+      </div>
+
+      <div class="mt-12 text-center text-neutral-600">
+        <p>Hover over cards to see the flip animation (desktop only)</p>
+      </div>
+    </div>
+  </main>
+</Layout>

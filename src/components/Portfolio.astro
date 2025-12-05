@@ -1,0 +1,59 @@
+---
+import FlipCard from './FlipCard.astro';
+import Button from './Button.astro';
+import { getFeaturedPortfolioItems } from '../data/portfolio';
+
+// Show only featured items on homepage (max 3)
+const featuredItems = getFeaturedPortfolioItems().slice(0, 3);
+---
+
+<section id="portfolio" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <!-- Headline -->
+    <h2 class="text-4xl md:text-5xl font-bold font-heading text-neutral-900 text-center mb-4">
+      See What We've Built
+    </h2>
+
+    <!-- Subheading -->
+    <p class="text-xl text-neutral-700 text-center mb-2 max-w-2xl mx-auto">
+      From embarrassed to proud in 2 weeks
+    </p>
+
+    <!-- Social proof -->
+    <p class="text-neutral-600 text-center mb-12">
+      Join 50+ rural businesses with beautiful websites
+    </p>
+
+    <!-- Portfolio Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      {featuredItems.map(item => (
+        <FlipCard
+          frontImage={item.beforeImage}
+          frontAlt={`Before: ${item.clientName}`}
+          backImage={item.afterImage}
+          backAlt={`After: ${item.clientName}`}
+          clientName={item.clientName}
+          result={item.result}
+        />
+      ))}
+    </div>
+
+    <!-- CTAs -->
+    <div class="text-center space-y-4">
+      <Button href="#contact" size="lg">
+        Start Your Transformation
+      </Button>
+      <div>
+        <a
+          href="/portfolio"
+          class="text-primary-600 hover:text-primary-700 font-semibold transition-colors inline-flex items-center"
+        >
+          View Full Portfolio
+          <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

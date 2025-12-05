@@ -1,0 +1,108 @@
+---
+interface Props {
+  frontImage?: string;
+  frontAlt?: string;
+  backImage?: string;
+  backAlt?: string;
+  clientName: string;
+  result: string;
+}
+
+const { frontImage, frontAlt = "Before", backImage, backAlt = "After", clientName, result } = Astro.props;
+---
+
+<div
+  class="flip-card group [perspective:1000px] w-full aspect-square cursor-pointer"
+  tabindex="0"
+  role="button"
+  aria-label="Flip card to see after"
+>
+  <div class="flip-card-inner relative w-full h-full transition-transform duration-[600ms] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+    <!-- Front (Before) -->
+    <div class="flip-card-front absolute inset-0 [backface-visibility:hidden]">
+      {frontImage ? (
+        <img
+          src={frontImage}
+          alt={frontAlt}
+          class="w-full h-full object-cover rounded-lg"
+        />
+      ) : (
+        <div class="w-full h-full bg-neutral-300 rounded-lg flex items-center justify-center">
+          <span class="text-neutral-500 text-6xl">📷</span>
+        </div>
+      )}
+      <div class="absolute bottom-0 left-0 right-0 bg-neutral-900/80 p-4 rounded-b-lg">
+        <span class="text-white font-semibold text-lg">Before</span>
+      </div>
+    </div>
+
+    <!-- Back (After) -->
+    <div class="flip-card-back absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+      {backImage ? (
+        <img
+          src={backImage}
+          alt={backAlt}
+          class="w-full h-full object-cover rounded-lg"
+        />
+      ) : (
+        <div class="w-full h-full bg-primary-100 rounded-lg flex items-center justify-center">
+          <span class="text-primary-600 text-6xl">✨</span>
+        </div>
+      )}
+      <div class="absolute bottom-0 left-0 right-0 bg-primary-600/90 p-4 rounded-b-lg">
+        <span class="text-white font-semibold text-lg">{clientName}</span>
+        <p class="text-white/90 text-sm mt-1">{result}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.flip-card').forEach(card => {
+    const inner = card.querySelector('.flip-card-inner') as HTMLElement;
+    let isFlipped = false;
+
+    // Mobile tap to flip
+    card.addEventListener('click', () => {
+      isFlipped = !isFlipped;
+      if (isFlipped) {
+        inner.style.transform = 'rotateY(180deg)';
+      } else {
+        inner.style.transform = 'rotateY(0deg)';
+      }
+      updateAriaLabel();
+    });
+
+    // Keyboard support
+    card.addEventListener('keydown', (e: Event) => {
+      const keyEvent = e as KeyboardEvent;
+      if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+        keyEvent.preventDefault();
+        isFlipped = !isFlipped;
+        if (isFlipped) {
+          inner.style.transform = 'rotateY(180deg)';
+        } else {
+          inner.style.transform = 'rotateY(0deg)';
+        }
+        updateAriaLabel();
+      }
+    });
+
+    // Update ARIA label for screen readers
+    function updateAriaLabel() {
+      if (isFlipped) {
+        card.setAttribute('aria-label', 'Showing after. Press Enter to see before.');
+      } else {
+        card.setAttribute('aria-label', 'Showing before. Press Enter to see after.');
+      }
+    }
+  });
+</script>
+
+<style>
+  /* Add focus ring for keyboard navigation */
+  .flip-card:focus {
+    outline: 2px solid #047857;
+    outline-offset: 4px;
+  }
+</style>
