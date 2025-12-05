@@ -1,8 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import FlipCard from '../components/FlipCard.astro';
-import beforeImage from '../assets/portfolio-before-1.jpg';
-import afterImage from '../assets/portfolio-after-1.jpg';
 ---
 
 <Layout
@@ -17,27 +15,27 @@ import afterImage from '../assets/portfolio-after-1.jpg';
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
         <FlipCard
-          frontImage={beforeImage.src}
+          frontImage="/portfolio-before-1.jpg"
           frontAlt="Old website design"
-          backImage={afterImage.src}
+          backImage="/portfolio-after-1.jpg"
           backAlt="New modern website design"
           clientName="Mary Jane's Campground"
           result="60% increase in bookings"
         />
 
         <FlipCard
-          frontImage={beforeImage.src}
+          frontImage="/portfolio-before-1.jpg"
           frontAlt="Old website design"
-          backImage={afterImage.src}
+          backImage="/portfolio-after-1.jpg"
           backAlt="New modern website design"
           clientName="Pine Valley Winery"
           result="3x more online orders"
         />
 
         <FlipCard
-          frontImage={beforeImage.src}
+          frontImage="/portfolio-before-1.jpg"
           frontAlt="Old website design"
-          backImage={afterImage.src}
+          backImage="/portfolio-after-1.jpg"
           backAlt="New modern website design"
           clientName="Mountain View Lodge"
           result="45% faster load times"
