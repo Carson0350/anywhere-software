@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+---
+
+<Layout
+  title="About AnywhereSoftware - Mobile Web Design Consultant"
+  description="Carson travels in an RV to meet rural businesses on-site. Face-to-face web design and consulting for campgrounds, wineries, and rural hospitality."
+>
+  <main id="main">
+    <section class="py-24 bg-neutral-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <!-- Trust signal -->
+            <p class="text-sm font-semibold text-primary-600 mb-4">
+              Serving rural businesses across the Pacific Northwest
+            </p>
+
+            <h1 class="text-5xl font-bold font-heading text-neutral-900 mb-6">
+              The Only Web Consultant Who Travels to You
+            </h1>
+            <p class="text-xl text-neutral-700 mb-8 leading-relaxed">
+              I live in an RV and meet clients on-site. Face-to-face consulting for
+              campgrounds, wineries, and rural businesses.
+            </p>
+
+            <Button href="#process" size="lg">
+              See How It Works
+            </Button>
+          </div>
+
+          <div>
+            <!-- Placeholder for hero image -->
+            <div class="rounded-lg shadow-lg bg-neutral-200 aspect-[3/2] flex items-center justify-center">
+              <div class="text-center p-8">
+                <p class="text-neutral-600 text-lg font-semibold mb-2">📷 Hero Image</p>
+                <p class="text-neutral-500 text-sm">Carson with RV at a rural campground</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
