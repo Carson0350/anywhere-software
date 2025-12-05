@@ -7,7 +7,12 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:lighthouse": "lighthouse https://anywheresoftware.com --output=json --output-path=./lighthouse-report.json",
+    "test:links": "linkinator https://anywheresoftware.com --recurse",
+    "test:a11y": "pa11y https://anywheresoftware.com",
+    "test:html": "html-validate dist/**/*.html",
+    "test:all": "npm run test:lighthouse && npm run test:links && npm run test:a11y && npm run test:html"
   },
   "dependencies": {
     "@fontsource/inter": "^5.0.16",
