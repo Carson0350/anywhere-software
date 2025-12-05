@@ -1,0 +1,37 @@
+---
+import ServiceCard from './ServiceCard.astro';
+
+const services = [
+  {
+    id: 'beautiful-websites',
+    title: 'Beautiful Websites',
+    description: 'Custom-designed websites that tell your story and convert visitors into customers.',
+    icon: '🎨'
+  },
+  {
+    id: 'we-come-to-you',
+    title: 'We Come to You',
+    description: 'I travel in my RV to meet you on-site. No video calls, just face-to-face service.',
+    icon: '🚐'
+  },
+  {
+    id: 'always-available',
+    title: 'Always Available',
+    description: 'Full-service partnership with ongoing support and maintenance.',
+    icon: '🤝'
+  }
+];
+---
+
+<section id="services" class="bg-neutral-50 py-24">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-4xl md:text-5xl font-bold font-heading text-neutral-900 mb-12 text-center">
+      Our Services
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((service) => (
+        <ServiceCard service={service} />
+      ))}
+    </div>
+  </div>
+</section>
