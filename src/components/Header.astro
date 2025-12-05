@@ -80,9 +80,10 @@ const navLinks = [
 <script>
   // Smooth scroll for navigation links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', (e) => {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href') as string);
+      const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+      const target = href ? document.querySelector(href) : null;
       if (target) {
         target.scrollIntoView({
           behavior: 'smooth',
@@ -134,16 +135,17 @@ const navLinks = [
   const firstFocusable = focusableElements?.[0] as HTMLElement;
   const lastFocusable = focusableElements?.[focusableElements.length - 1] as HTMLElement;
 
-  mobileMenu?.addEventListener('keydown', (e) => {
-    if (e.key === 'Tab') {
-      if (e.shiftKey) {
+  mobileMenu?.addEventListener('keydown', (e: Event) => {
+    const keyEvent = e as KeyboardEvent;
+    if (keyEvent.key === 'Tab') {
+      if (keyEvent.shiftKey) {
         if (document.activeElement === firstFocusable) {
-          e.preventDefault();
+          keyEvent.preventDefault();
           lastFocusable?.focus();
         }
       } else {
         if (document.activeElement === lastFocusable) {
-          e.preventDefault();
+          keyEvent.preventDefault();
           firstFocusable?.focus();
         }
       }
