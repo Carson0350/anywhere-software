@@ -44,6 +44,39 @@ const navLinks = [
   </div>
 </header>
 
+<!-- Mobile Menu Overlay -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 bg-white z-50 transform translate-x-full transition-transform duration-300 ease-out lg:hidden"
+  aria-hidden="true"
+>
+  <div class="flex justify-end p-4">
+    <button
+      id="close-menu"
+      aria-label="Close menu"
+      class="text-neutral-900 hover:text-primary-600 transition-colors"
+    >
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+  <nav class="px-8 py-12">
+    <ul class="space-y-6">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="block text-2xl font-semibold text-neutral-900 hover:text-primary-600 transition-colors py-3"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</div>
+
 <script>
   // Smooth scroll for navigation links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -57,6 +90,64 @@ const navLinks = [
         });
       }
     });
+  });
+
+  // Mobile menu functionality
+  const menuButton = document.querySelector('#mobile-menu-button');
+  const closeButton = document.querySelector('#close-menu');
+  const mobileMenu = document.querySelector('#mobile-menu');
+  const menuLinks = mobileMenu?.querySelectorAll('a');
+
+  function openMenu() {
+    mobileMenu?.classList.remove('translate-x-full');
+    mobileMenu?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    (closeButton as HTMLElement)?.focus();
+  }
+
+  function closeMenu() {
+    mobileMenu?.classList.add('translate-x-full');
+    mobileMenu?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    (menuButton as HTMLElement)?.focus();
+  }
+
+  menuButton?.addEventListener('click', openMenu);
+  closeButton?.addEventListener('click', closeMenu);
+
+  // Close menu when clicking a link
+  menuLinks?.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !mobileMenu?.classList.contains('translate-x-full')) {
+      closeMenu();
+    }
+  });
+
+  // Focus trap
+  const focusableElements = mobileMenu?.querySelectorAll(
+    'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  const firstFocusable = focusableElements?.[0] as HTMLElement;
+  const lastFocusable = focusableElements?.[focusableElements.length - 1] as HTMLElement;
+
+  mobileMenu?.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusable) {
+          e.preventDefault();
+          lastFocusable?.focus();
+        }
+      } else {
+        if (document.activeElement === lastFocusable) {
+          e.preventDefault();
+          firstFocusable?.focus();
+        }
+      }
+    }
   });
 </script>
 
