@@ -1,0 +1,46 @@
+---
+interface Props {
+  frontImage: string;
+  frontAlt: string;
+  backImage: string;
+  backAlt: string;
+  clientName: string;
+  result: string;
+}
+
+const { frontImage, frontAlt, backImage, backAlt, clientName, result } = Astro.props;
+---
+
+<div
+  class="flip-card group [perspective:1000px] w-full aspect-square cursor-pointer"
+  tabindex="0"
+  role="button"
+  aria-label="Flip card to see after"
+>
+  <div class="flip-card-inner relative w-full h-full transition-transform duration-[600ms] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+    <!-- Front (Before) -->
+    <div class="flip-card-front absolute inset-0 [backface-visibility:hidden]">
+      <img
+        src={frontImage}
+        alt={frontAlt}
+        class="w-full h-full object-cover rounded-lg"
+      />
+      <div class="absolute bottom-0 left-0 right-0 bg-neutral-900/80 p-4 rounded-b-lg">
+        <span class="text-white font-semibold text-lg">Before</span>
+      </div>
+    </div>
+
+    <!-- Back (After) -->
+    <div class="flip-card-back absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+      <img
+        src={backImage}
+        alt={backAlt}
+        class="w-full h-full object-cover rounded-lg"
+      />
+      <div class="absolute bottom-0 left-0 right-0 bg-primary-600/90 p-4 rounded-b-lg">
+        <span class="text-white font-semibold text-lg">{clientName}</span>
+        <p class="text-white/90 text-sm mt-1">{result}</p>
+      </div>
+    </div>
+  </div>
+</div>
