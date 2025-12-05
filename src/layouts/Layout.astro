@@ -63,6 +63,10 @@ const ogImage = new URL(image, siteUrl).href;
     <meta name="theme-color" content="#047857" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#065f46" media="(prefers-color-scheme: dark)" />
 
+    <!-- Resource hints for performance -->
+    <link rel="preconnect" href="https://formspree.io" />
+    <link rel="dns-prefetch" href="https://formspree.io" />
+
     <slot name="head" />
   </head>
   <body class="font-sans text-neutral-900 bg-neutral-50">
