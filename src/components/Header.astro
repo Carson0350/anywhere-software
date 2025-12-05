@@ -1,0 +1,161 @@
+---
+const navLinks = [
+  { href: '#services', label: 'Services' },
+  { href: '#pricing', label: 'Pricing' },
+  { href: '#portfolio', label: 'Portfolio' },
+  { href: '#about', label: 'About' },
+  { href: '#contact', label: 'Contact' }
+];
+---
+
+<header class="sticky top-0 z-40 bg-white border-b border-neutral-200">
+  <div class="max-w-7xl mx-auto px-4 py-4">
+    <nav class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="text-2xl font-bold font-heading text-neutral-900 hover:text-primary-600 transition-colors">
+        AnywhereSoftware
+      </a>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden lg:flex items-center space-x-8">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="text-neutral-700 hover:text-primary-600 transition-colors font-medium"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Mobile Menu Button (hidden on desktop) -->
+      <button
+        id="mobile-menu-button"
+        aria-label="Open menu"
+        class="lg:hidden text-neutral-900 hover:text-primary-600 transition-colors"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 bg-white z-50 transform translate-x-full transition-transform duration-300 ease-out lg:hidden"
+  aria-hidden="true"
+>
+  <div class="flex justify-end p-4">
+    <button
+      id="close-menu"
+      aria-label="Close menu"
+      class="text-neutral-900 hover:text-primary-600 transition-colors"
+    >
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+  <nav class="px-8 py-12">
+    <ul class="space-y-6">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="block text-2xl font-semibold text-neutral-900 hover:text-primary-600 transition-colors py-3"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</div>
+
+<script>
+  // Smooth scroll for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+      const target = href ? document.querySelector(href) : null;
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Mobile menu functionality
+  const menuButton = document.querySelector('#mobile-menu-button');
+  const closeButton = document.querySelector('#close-menu');
+  const mobileMenu = document.querySelector('#mobile-menu');
+  const menuLinks = mobileMenu?.querySelectorAll('a');
+
+  function openMenu() {
+    mobileMenu?.classList.remove('translate-x-full');
+    mobileMenu?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    (closeButton as HTMLElement)?.focus();
+  }
+
+  function closeMenu() {
+    mobileMenu?.classList.add('translate-x-full');
+    mobileMenu?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    (menuButton as HTMLElement)?.focus();
+  }
+
+  menuButton?.addEventListener('click', openMenu);
+  closeButton?.addEventListener('click', closeMenu);
+
+  // Close menu when clicking a link
+  menuLinks?.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !mobileMenu?.classList.contains('translate-x-full')) {
+      closeMenu();
+    }
+  });
+
+  // Focus trap
+  const focusableElements = mobileMenu?.querySelectorAll(
+    'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  const firstFocusable = focusableElements?.[0] as HTMLElement;
+  const lastFocusable = focusableElements?.[focusableElements.length - 1] as HTMLElement;
+
+  mobileMenu?.addEventListener('keydown', (e: Event) => {
+    const keyEvent = e as KeyboardEvent;
+    if (keyEvent.key === 'Tab') {
+      if (keyEvent.shiftKey) {
+        if (document.activeElement === firstFocusable) {
+          keyEvent.preventDefault();
+          lastFocusable?.focus();
+        }
+      } else {
+        if (document.activeElement === lastFocusable) {
+          keyEvent.preventDefault();
+          firstFocusable?.focus();
+        }
+      }
+    }
+  });
+</script>
+
+<style>
+  /* Ensure smooth scrolling works */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

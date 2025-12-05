@@ -1,0 +1,29 @@
+---
+import { Image } from 'astro:assets';
+import Button from './Button.astro';
+import heroImage from '../assets/rv-mountains.jpg';
+---
+
+<section class="relative h-screen">
+  <Image
+    src={heroImage}
+    alt="RV in mountain landscape"
+    class="absolute inset-0 w-full h-full object-cover"
+    loading="eager"
+    format="webp"
+    quality={85}
+    widths={[640, 1024, 1920]}
+    sizes="100vw"
+  />
+  <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
+    <div class="text-center text-white px-4">
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold font-heading mb-6">
+        AnywhereSoftware
+      </h1>
+      <p class="text-2xl md:text-3xl font-semibold mb-12">
+        Beautiful websites, delivered anywhere
+      </p>
+      <Button size="xl" href="#contact">Get Started</Button>
+    </div>
+  </div>
+</section>

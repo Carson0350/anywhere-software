@@ -1,21 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Button from '../components/Button.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Pricing from '../components/Pricing.astro';
 ---
 
 <Layout
   title="AnywhereSoftware | Mobile Web Design Consultant"
   description="Beautiful websites for agritourism and hospitality, delivered anywhere"
 >
-  <main class="min-h-screen flex items-center justify-center bg-neutral-50">
-    <div class="text-center px-4">
-      <h1 class="text-5xl md:text-6xl font-bold text-neutral-900 mb-6 font-heading">
-        AnywhereSoftware
-      </h1>
-      <p class="text-xl md:text-2xl text-neutral-600 mb-8 max-w-2xl mx-auto">
-        Beautiful websites, delivered anywhere
-      </p>
-      <Button size="xl">Get Started</Button>
-    </div>
-  </main>
+  <Hero />
+  <Services />
+  <Pricing />
 </Layout>

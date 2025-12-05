@@ -1,0 +1,69 @@
+---
+import PricingCard from './PricingCard.astro';
+
+const pricingTiers = [
+  {
+    id: 'starter',
+    name: 'Starter Site',
+    price: '$2,500',
+    description: 'Perfect for small businesses getting started online',
+    features: [
+      '5-page custom website',
+      'Mobile responsive design',
+      'Contact form integration',
+      'Basic SEO setup',
+      '30 days of support'
+    ],
+    cta: 'Get Started',
+    featured: false
+  },
+  {
+    id: 'professional',
+    name: 'Professional Site',
+    price: '$5,000',
+    description: 'Ideal for established businesses ready to grow',
+    features: [
+      '10-page custom website',
+      'Advanced animations',
+      'Portfolio/gallery integration',
+      'Advanced SEO & analytics',
+      '90 days of support',
+      'Content management training'
+    ],
+    cta: 'Get Started',
+    featured: true
+  },
+  {
+    id: 'enterprise',
+    name: 'Enterprise Solution',
+    price: 'Custom',
+    description: 'Tailored solutions for complex requirements',
+    features: [
+      'Unlimited pages',
+      'Custom functionality',
+      'API integrations',
+      'Ongoing maintenance',
+      'Priority support',
+      'Dedicated project manager'
+    ],
+    cta: 'Contact Us',
+    featured: false
+  }
+];
+---
+
+<section id="pricing" class="bg-white py-24">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-4xl md:text-5xl font-bold font-heading text-neutral-900 mb-4 text-center">
+      Simple, Transparent Pricing
+    </h2>
+    <p class="text-xl text-neutral-600 mb-12 text-center max-w-2xl mx-auto">
+      Choose the package that fits your needs. All projects include on-site consultation.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {pricingTiers.map((tier) => (
+        <PricingCard tier={tier} />
+      ))}
+    </div>
+  </div>
+</section>
