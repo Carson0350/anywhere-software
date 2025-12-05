@@ -56,3 +56,53 @@ const { frontImage, frontAlt = "Before", backImage, backAlt = "After", clientNam
     </div>
   </div>
 </div>
+
+<script>
+  document.querySelectorAll('.flip-card').forEach(card => {
+    const inner = card.querySelector('.flip-card-inner') as HTMLElement;
+    let isFlipped = false;
+
+    // Mobile tap to flip
+    card.addEventListener('click', () => {
+      isFlipped = !isFlipped;
+      if (isFlipped) {
+        inner.style.transform = 'rotateY(180deg)';
+      } else {
+        inner.style.transform = 'rotateY(0deg)';
+      }
+      updateAriaLabel();
+    });
+
+    // Keyboard support
+    card.addEventListener('keydown', (e: Event) => {
+      const keyEvent = e as KeyboardEvent;
+      if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+        keyEvent.preventDefault();
+        isFlipped = !isFlipped;
+        if (isFlipped) {
+          inner.style.transform = 'rotateY(180deg)';
+        } else {
+          inner.style.transform = 'rotateY(0deg)';
+        }
+        updateAriaLabel();
+      }
+    });
+
+    // Update ARIA label for screen readers
+    function updateAriaLabel() {
+      if (isFlipped) {
+        card.setAttribute('aria-label', 'Showing after. Press Enter to see before.');
+      } else {
+        card.setAttribute('aria-label', 'Showing before. Press Enter to see after.');
+      }
+    }
+  });
+</script>
+
+<style>
+  /* Add focus ring for keyboard navigation */
+  .flip-card:focus {
+    outline: 2px solid #047857;
+    outline-offset: 4px;
+  }
+</style>
