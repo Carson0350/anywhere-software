@@ -104,7 +104,10 @@ import { portfolioItems } from '../data/portfolio';
 
       // Track filter selection (Vercel Analytics)
       if (typeof (window as any).va !== 'undefined') {
-        (window as any).va('event', 'portfolio_filter', { filter });
+        (window as any).va('event', 'portfolio_filter', {
+          filter,
+          value: 50  // Medium value - interest shown
+        });
       }
 
       // Filter items

@@ -67,11 +67,53 @@ const ogImage = new URL(image, siteUrl).href;
     <link rel="preconnect" href="https://formspree.io" />
     <link rel="dns-prefetch" href="https://formspree.io" />
 
+    <!-- Vercel Analytics -->
+    <script is:inline>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+
     <slot name="head" />
   </head>
   <body class="font-sans text-neutral-900 bg-neutral-50">
     <Header />
     <slot />
     <Footer />
+
+    <!-- Error tracking -->
+    <script is:inline>
+      // Global error handler
+      window.addEventListener('error', (event) => {
+        if (typeof window.va !== 'undefined') {
+          window.va('event', 'javascript_error', {
+            message: event.message,
+            filename: event.filename,
+            lineno: event.lineno,
+            colno: event.colno
+          });
+        }
+      });
+
+      // Unhandled promise rejection handler
+      window.addEventListener('unhandledrejection', (event) => {
+        if (typeof window.va !== 'undefined') {
+          window.va('event', 'promise_rejection', {
+            reason: event.reason?.toString() || 'Unknown'
+          });
+        }
+      });
+
+      // Track time on site (2+ minutes)
+      let startTime = Date.now();
+      window.addEventListener('beforeunload', () => {
+        const timeOnSite = (Date.now() - startTime) / 1000;
+        if (timeOnSite > 120 && typeof window.va !== 'undefined') {
+          window.va('event', 'time_on_site_2min', {
+            value: 10,
+            duration: Math.round(timeOnSite)
+          });
+        }
+      });
+    </script>
   </body>
 </html>
