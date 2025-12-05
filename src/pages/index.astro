@@ -1,5 +1,5 @@
 ---
-// Welcome page
+import '../styles/global.css';
 ---
 
 <!doctype html>
@@ -11,6 +11,19 @@
     <title>AnywhereSoftware</title>
   </head>
   <body>
-    <h1>Welcome to AnywhereSoftware</h1>
+    <div class="min-h-screen flex flex-col items-center justify-center gap-8 p-8">
+      <h1 class="text-6xl font-heading font-bold text-primary-700">
+        Welcome to AnywhereSoftware
+      </h1>
+      <div class="flex gap-4">
+        <div class="w-24 h-24 bg-primary-500 rounded-lg"></div>
+        <div class="w-24 h-24 bg-accent-sky rounded-lg"></div>
+        <div class="w-24 h-24 bg-accent-sunset rounded-lg"></div>
+        <div class="w-24 h-24 bg-accent-alpine rounded-lg"></div>
+      </div>
+      <p class="text-lg text-neutral-600 font-sans">
+        Testing Tailwind configuration with custom design tokens
+      </p>
+    </div>
   </body>
 </html>
