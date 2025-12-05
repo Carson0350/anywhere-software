@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://anywheresoftware.com/sitemap.xml
+
+# Disallow staging/test paths (if any)
+# Disallow: /staging/
+# Disallow: /test/
