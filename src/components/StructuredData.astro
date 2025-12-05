@@ -1,0 +1,94 @@
+---
+interface Props {
+  type: 'organization' | 'person' | 'localbusiness' | 'breadcrumb';
+  data?: any;
+}
+
+const { type, data } = Astro.props;
+const siteUrl = 'https://anywheresoftware.com';
+
+const schemas: Record<string, any> = {
+  organization: {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AnywhereSoftware",
+    "description": "Mobile web design consultant for rural businesses",
+    "url": siteUrl,
+    "logo": `${siteUrl}/images/logo.png`,
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "email": "hello@anywheresoftware.com"
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "45.5152",
+        "longitude": "-122.6784"
+      },
+      "geoRadius": "500 miles"
+    }
+  },
+
+  localbusiness: {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "AnywhereSoftware",
+    "description": "Mobile web design consultant for rural businesses",
+    "url": siteUrl,
+    "telephone": "+1-555-123-4567",
+    "email": "hello@anywheresoftware.com",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Pacific Northwest",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "45.5152",
+      "longitude": "-122.6784"
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "45.5152",
+        "longitude": "-122.6784"
+      },
+      "geoRadius": "500 miles"
+    }
+  },
+
+  person: {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Carson",
+    "jobTitle": "Web Design Consultant",
+    "description": "Mobile web design consultant specializing in rural businesses",
+    "url": `${siteUrl}/about`,
+    "image": `${siteUrl}/images/carson.jpg`,
+    "knowsAbout": ["Web Development", "Astro", "React", "Tailwind CSS", "Mobile Consulting"],
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "45.5152",
+        "longitude": "-122.6784"
+      },
+      "geoRadius": "500 miles"
+    }
+  },
+
+  breadcrumb: {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": data?.items || []
+  }
+};
+
+const schema = schemas[type];
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />

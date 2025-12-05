@@ -5,12 +5,26 @@ import Services from '../components/Services.astro';
 import Portfolio from '../components/Portfolio.astro';
 import Pricing from '../components/Pricing.astro';
 import ContactForm from '../components/ContactForm.astro';
+import StructuredData from '../components/StructuredData.astro';
 ---
 
 <Layout
   title="AnywhereSoftware | Mobile Web Design Consultant"
-  description="Beautiful websites for agritourism and hospitality, delivered anywhere"
+  description="Mobile web design consultant who travels to you. I build beautiful websites for rural businesses—campgrounds, wineries, restaurants. On-site service in the Pacific Northwest."
 >
+  <StructuredData type="organization" />
+  <StructuredData type="localbusiness" />
+  <StructuredData type="breadcrumb" data={{
+    items: [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://anywheresoftware.com"
+      }
+    ]
+  }} />
+
   <Hero />
   <Services />
   <Portfolio />

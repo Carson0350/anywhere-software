@@ -1,0 +1,20 @@
+{
+  "timings": {
+    "firstContentfulPaint": 1800,
+    "largestContentfulPaint": 2500,
+    "timeToInteractive": 3800,
+    "totalBlockingTime": 300
+  },
+  "resourceSizes": {
+    "total": 500,
+    "script": 150,
+    "image": 200,
+    "stylesheet": 50,
+    "font": 100
+  },
+  "resourceCounts": {
+    "total": 30,
+    "script": 10,
+    "image": 15
+  }
+}

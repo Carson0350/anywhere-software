@@ -305,9 +305,10 @@
         form.reset();
         showSuccessMessage();
 
-        // Track successful submission
+        // Track successful submission with conversion value
         if (typeof (window as any).va !== 'undefined') {
           (window as any).va('event', 'contact_form_submit', {
+            value: 500,  // High value - qualified lead
             businessType: formData.get('businessType'),
             location: formData.get('location'),
             budget: formData.get('budget') || 'not-provided',
