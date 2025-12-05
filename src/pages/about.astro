@@ -1,12 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
+import StructuredData from '../components/StructuredData.astro';
 ---
 
 <Layout
   title="About AnywhereSoftware - Mobile Web Design Consultant"
   description="Meet Carson, the web consultant who lives in an RV and travels to rural businesses. Face-to-face service, modern technology, no remote confusion."
 >
+  <StructuredData type="breadcrumb" data={{
+    items: [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://anywheresoftware.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About",
+        "item": "https://anywheresoftware.com/about"
+      }
+    ]
+  }} />
   <main id="main">
     <section class="py-24 bg-neutral-50">
       <div class="max-w-7xl mx-auto px-4">

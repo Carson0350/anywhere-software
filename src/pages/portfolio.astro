@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import FlipCard from '../components/FlipCard.astro';
+import StructuredData from '../components/StructuredData.astro';
 import { portfolioItems } from '../data/portfolio';
 ---
 
@@ -8,6 +9,22 @@ import { portfolioItems } from '../data/portfolio';
   title="Portfolio - AnywhereSoftware"
   description="See websites I've built for campgrounds, wineries, and rural businesses across the Pacific Northwest. 50+ sites, 100% on-site service."
 >
+  <StructuredData type="breadcrumb" data={{
+    items: [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://anywheresoftware.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Portfolio",
+        "item": "https://anywheresoftware.com/portfolio"
+      }
+    ]
+  }} />
   <main class="py-24">
     <div class="max-w-7xl mx-auto px-4">
       <!-- Page Header -->
