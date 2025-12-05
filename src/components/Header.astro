@@ -1,0 +1,68 @@
+---
+const navLinks = [
+  { href: '#services', label: 'Services' },
+  { href: '#pricing', label: 'Pricing' },
+  { href: '#portfolio', label: 'Portfolio' },
+  { href: '#about', label: 'About' },
+  { href: '#contact', label: 'Contact' }
+];
+---
+
+<header class="sticky top-0 z-40 bg-white border-b border-neutral-200">
+  <div class="max-w-7xl mx-auto px-4 py-4">
+    <nav class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="text-2xl font-bold font-heading text-neutral-900 hover:text-primary-600 transition-colors">
+        AnywhereSoftware
+      </a>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden lg:flex items-center space-x-8">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="text-neutral-700 hover:text-primary-600 transition-colors font-medium"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Mobile Menu Button (hidden on desktop) -->
+      <button
+        id="mobile-menu-button"
+        aria-label="Open menu"
+        class="lg:hidden text-neutral-900 hover:text-primary-600 transition-colors"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Smooth scroll for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href') as string);
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Ensure smooth scrolling works */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
