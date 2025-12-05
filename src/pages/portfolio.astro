@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FlipCard from '../components/FlipCard.astro';
+import { portfolioItems } from '../data/portfolio';
+---
+
+<Layout
+  title="Portfolio - AnywhereSoftware"
+  description="See our before and after website transformations for campgrounds, wineries, and rural businesses"
+>
+  <main class="py-24">
+    <div class="max-w-7xl mx-auto px-4">
+      <!-- Page Header -->
+      <h1 class="text-5xl font-bold font-heading text-neutral-900 text-center mb-4">
+        Portfolio
+      </h1>
+      <p class="text-xl text-neutral-700 text-center mb-12 max-w-2xl mx-auto">
+        Real transformations for real rural businesses
+      </p>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <button
+          class="filter-btn active"
+          data-filter="all"
+          aria-pressed="true"
+        >
+          All
+        </button>
+        <button
+          class="filter-btn"
+          data-filter="campground"
+          aria-pressed="false"
+        >
+          Campgrounds
+        </button>
+        <button
+          class="filter-btn"
+          data-filter="winery"
+          aria-pressed="false"
+        >
+          Wineries
+        </button>
+        <button
+          class="filter-btn"
+          data-filter="restaurant"
+          aria-pressed="false"
+        >
+          Restaurants
+        </button>
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {portfolioItems.map(item => (
+          <div class="portfolio-item" data-industry={item.industry}>
+            <FlipCard
+              frontImage={item.beforeImage}
+              frontAlt={`Before: ${item.clientName}`}
+              backImage={item.afterImage}
+              backAlt={`After: ${item.clientName}`}
+              clientName={item.clientName}
+              result={item.result}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const portfolioElements = document.querySelectorAll('.portfolio-item');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.getAttribute('data-filter');
+
+      // Update active state
+      filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      });
+      button.classList.add('active');
+      button.setAttribute('aria-pressed', 'true');
+
+      // Track filter selection (Vercel Analytics)
+      if (typeof (window as any).va !== 'undefined') {
+        (window as any).va('event', 'portfolio_filter', { filter });
+      }
+
+      // Filter items
+      portfolioElements.forEach(item => {
+        const itemElement = item as HTMLElement;
+        if (filter === 'all' || item.getAttribute('data-industry') === filter) {
+          itemElement.style.display = 'block';
+        } else {
+          itemElement.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .filter-btn {
+    @apply px-6 py-3 rounded-lg font-semibold transition-colors;
+    @apply bg-neutral-100 text-neutral-700 hover:bg-neutral-200;
+  }
+
+  .filter-btn.active {
+    @apply bg-primary-500 text-white hover:bg-primary-600;
+  }
+</style>
