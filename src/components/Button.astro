@@ -1,0 +1,45 @@
+---
+interface Props {
+  variant?: 'default' | 'secondary' | 'outline';
+  size?: 'default' | 'lg' | 'xl';
+  href?: string;
+  class?: string;
+  disabled?: boolean;
+}
+
+const {
+  variant = 'default',
+  size = 'default',
+  href,
+  class: className,
+  disabled = false
+} = Astro.props;
+
+const baseClasses = "inline-flex items-center justify-center rounded-lg font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2";
+
+const variantClasses = {
+  default: "bg-primary-500 text-white hover:bg-primary-600",
+  secondary: "bg-neutral-100 text-neutral-900 hover:bg-neutral-200",
+  outline: "border-2 border-primary-500 text-primary-700 hover:bg-primary-50"
+};
+
+const sizeClasses = {
+  default: "h-12 px-6 py-3",
+  lg: "h-14 px-8 py-4 text-lg",
+  xl: "h-16 px-10 py-5 text-xl"
+};
+
+const disabledClasses = disabled ? "opacity-50 pointer-events-none" : "";
+
+const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${disabledClasses} ${className || ''}`;
+---
+
+{href ? (
+  <a href={href} class={classes}>
+    <slot />
+  </a>
+) : (
+  <button class={classes} disabled={disabled}>
+    <slot />
+  </button>
+)}
